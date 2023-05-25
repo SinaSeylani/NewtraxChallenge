@@ -1,0 +1,75 @@
+﻿<!-- WorkerListView.xaml -->
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="NewtraxChallenge.Views.WorkerListView">
+      <StackLayout Padding="10">
+        <ListView x:Name="workerListView" HasUnevenRows="True" ItemsSource="{Binding Workers}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame BorderColor="Black"
+                               CornerRadius="5"
+                               Padding="10"
+                               Margin="0,10">
+                        <StackLayout Margin="0,10">
+                            <StackLayout Orientation="Horizontal">
+                                <Image Source="placeholder1.jpeg"
+                                       WidthRequest="50"
+                                       HeightRequest="50"
+                                      />
+                                
+                                <StackLayout Orientation="Vertical" VerticalOptions="Center" Padding="2">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Worker name: "
+                                               VerticalOptions="Center" />
+                                        <Label Text="{Binding Name}"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+                                    
+                                    <StackLayout Orientation="Horizontal">
+                                      <Label Text="Photo Path: "
+                                               VerticalOptions="Center" />
+                                        <Label Text="{Binding PhotoPath}"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Number of devices:"
+                                               VerticalOptions="Center" />
+                                        <Label Text="{Binding Devices.Count}"
+                                               VerticalOptions="Center" />
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                            <StackLayout Orientation="Vertical" Margin="60,0,0,0">
+                                <Label Text="List of Devices:"
+                                               VerticalOptions="Center" />
+                                <Picker
+                                    x:Name="devicesPicker"
+                                    Title="List of Devices"
+                                        ItemsSource="{Binding Devices}"
+                                        >
+                                    <Picker.ItemDisplayBinding>
+                                        <Binding Path="Type"  />
+                                    </Picker.ItemDisplayBinding>
+                                </Picker>
+                            </StackLayout>
+                        </StackLayout>
+                        </Frame>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+        <Button Text="+"
+                FontSize="24"
+                TextColor="White"
+                BackgroundColor="Blue"
+                WidthRequest="50"
+                HeightRequest="50"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="0,0,16,16"
+                Command="{Binding AddWorkerClickedCommand}" />
+    </StackLayout>
+</ContentPage>
