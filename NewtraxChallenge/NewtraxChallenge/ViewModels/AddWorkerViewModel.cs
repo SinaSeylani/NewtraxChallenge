@@ -156,7 +156,7 @@ namespace NewtraxChallenge.ViewModels
                     });
 
                     if (photo != null)
-                    {
+                    {         
                     }
                 }
                 else if (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Unknown || storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Unknown)
@@ -207,7 +207,5 @@ namespace NewtraxChallenge.ViewModels
         }
 
     }
-
-
 }
 
