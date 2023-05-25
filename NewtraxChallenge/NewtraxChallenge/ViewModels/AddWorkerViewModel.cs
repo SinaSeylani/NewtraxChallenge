@@ -132,9 +132,6 @@ namespace NewtraxChallenge.ViewModels
         {
             try
             {
-
-
-                // Request permission to access the device's camera and storage
                 Plugin.Permissions.Abstractions.PermissionStatus cameraStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Camera);
                 Plugin.Permissions.Abstractions.PermissionStatus  storageStatus = await CrossPermissions.Current.CheckPermissionStatusAsync(Permission.Storage);
                 if (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted || storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Granted)
@@ -142,10 +139,8 @@ namespace NewtraxChallenge.ViewModels
                     if (await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Camera) ||
                         await CrossPermissions.Current.ShouldShowRequestPermissionRationaleAsync(Permission.Storage))
                     {
-                        // Explain why the permission is needed
                     }
 
-                    // Request permissions
                     var results = await CrossPermissions.Current.RequestPermissionsAsync(Permission.Camera, Permission.Storage);
                     cameraStatus = results[Permission.Camera];
                     storageStatus = results[Permission.Storage];
@@ -153,7 +148,6 @@ namespace NewtraxChallenge.ViewModels
 
                 if (cameraStatus == Plugin.Permissions.Abstractions.PermissionStatus.Granted && storageStatus == Plugin.Permissions.Abstractions.PermissionStatus.Granted)
                 {
-                    // Take a photo using the device's camera
                     MediaFile photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
                     {
                         SaveToAlbum = false,
@@ -163,13 +157,10 @@ namespace NewtraxChallenge.ViewModels
 
                     if (photo != null)
                     {
-                        // Save the path of the captured photo
-                       // SelectedPhotoPath = photo.Path;
                     }
                 }
                 else if (cameraStatus != Plugin.Permissions.Abstractions.PermissionStatus.Unknown || storageStatus != Plugin.Permissions.Abstractions.PermissionStatus.Unknown)
                 {
-                    // Permission denied, display an error message or take appropriate action
                 }
             }
             catch (Exception ex)
